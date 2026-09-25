@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workspace Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="docChat.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-brand">
+                    <img src="./assets/Ai logo svg 1.svg" alt="DocChat Logo" class="app-logo">
+                    <span class="app-name">Workspace Assistant</span>
+                </div>
+                <button id="collapse-sidebar" class="collapse-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <button id="new-chat-btn" class="new-chat-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                    <span>New Chat</span>
+                </button>
+                
+                <div class="recent-section">
+                    <h3>Recent Chats</h3>
+                    <div id="file-list" class="chat-list">
+                        <!-- Files will be added here dynamically -->
+                        <div class="empty-chat-list">
+                            <div class="empty-chat-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <p>No chats yet</p>
+                            <p class="sub-text">Start a new chat to begin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button id="planner-btn" class="settings-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+                    <span>Task Planner</span>
+                </button>
+                <button id="settings-btn" class="settings-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Settings</span>
+                </button>
+                <button id="logout-btn" class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="main-header">
+                <div class="tab-container">
+                    <button class="tab-btn active" data-tab="chat">Chat</button>
+                    <button class="tab-btn" data-tab="document">Document</button>
+                </div>
+                <div class="theme-toggle-container">
+                    <span class="theme-icon light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </span>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="theme-icon dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="tab-content active" id="chat-tab">
+                <div id="upload-container" class="upload-container">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        </div>
+                        <h2>Upload your document</h2>
+                        <p>Drag and drop your file here or click to browse</p>
+                        <div id="dropzone" class="dropzone">
+                            <input id="file-input" type="file" style="display: none">
+                        </div>
+                        <button id="browse-files-btn" class="browse-btn">Browse Files</button>
+                        <div id="upload-error" class="error-message" style="display: none"></div>
+                    </div>
+                </div>
+                
+                <div id="chat-container" class="chat-container" style="display: none;" onclick="event.stopPropagation();">
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Chat messages will be added here dynamically -->
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <textarea id="query-input" placeholder="Type your message here..."></textarea>
+                        <button id="query-btn" class="send-btn" type="button" onclick="event.preventDefault(); return false;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="document-tab">
+                <div class="document-viewer">
+                    <div id="document-file-list" class="document-file-list">
+                        <!-- File list will be populated here -->
+                    </div>
+                    <!-- document-preview is now in the modal overlay -->
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" style="display: none"></div>
+    
+    <!-- Welcome Toast - Claude Style -->
+    <div id="welcome-toast" class="welcome-toast" style="display: flex;">
+        <div class="welcome-toast-container">
+            <div id="toastMessage" class="text-reveal">Hey there, <span id="toast-username">User</span>!</div>
+            <div id="secondMessage" class="second-message">How may I assist you today?</div>
+            <div id="actionButtons" class="welcome-action-btns" style="display: none;">
+                <button id="welcome-dashboard-btn" class="primary-btn" aria-label="File Chat">File Chat</button>
+                <button id="welcome-planner-btn" class="primary-btn" aria-label="Task Plan" style="background:#6366f1;">Task Plan</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content settings-step-1">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body settings-select">
+                <div class="settings-choice-card">
+                    <button class="settings-main-btn" id="open-profile-card">Profile</button>
+                    <button class="settings-main-btn" id="open-chats-card">Manage Chats</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-content settings-step-2" id="profile-card" style="display:none;">
+            <div class="modal-header">
+                <h2>Profile</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Edit Profile</h3>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="password-section">
+                        <h4>Change Password</h4>
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" name="current_password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" name="new_password">
+                        </div>
+                    </div>
+                    <div id="profile-error" class="error-message" style="display: none;"></div>
+                    <button type="submit" id="save-profile-btn" class="btn primary-btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+        <div class="modal-content settings-step-2" id="chats-card" style="display:none;">
+            <div class="modal-header">
+                <h2>Manage Chats</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- <h3>Manage Chats</h3> -->
+                <div class="manage-chats-container">
+                    <div class="chats-actions">
+                        <button id="delete-all-chats-btn" class="btn danger-btn">Delete All Chats</button>
+                    </div>
+                    <div id="settings-chat-list" class="settings-chat-list">
+                        <!-- Chat list will be populated here -->
+                        <div class="empty-list-message">No chats to display</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-confirm-modal" class="modal">
+        <div class="modal-content confirm-modal">
+            <div class="modal-header">
+                <h2>Confirm Deletion</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this chat? This action cannot be undone.</p>
+                <div class="confirm-actions">
+                    <button id="cancel-delete-btn" class="btn secondary-btn">Cancel</button>
+                    <button id="confirm-delete-btn" class="btn danger-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="document-preview-modal" class="document-preview-modal">
+        <div class="document-preview-modal-content">
+            <button id="close-document-preview" class="close-preview-btn" aria-label="Close Preview">&times;</button>
+            <div id="document-preview" class="document-preview">
+                <div class="document-placeholder">
+                    <p>Select a file to view its content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
+<style>
+.document-viewer {
+    display: flex;
+    flex-direction: row;
+    height: 70vh;
+    background: linear-gradient(135deg, #f8fafc 60%, #6366f1 100%);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(60,72,88,0.18);
+    overflow: hidden;
+    margin-top: 24px;
+    backdrop-filter: blur(6px);
+    position: relative;
+    animation: glassyFadeIn 1.2s cubic-bezier(.4,2,.6,1) 1;
+}
+@keyframes glassyFadeIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+.document-file-list {
+    width: 340px;
+    background: rgba(255,255,255,0.85);
+    border-right: 2px solid #e0e7ff;
+    overflow-y: auto;
+    padding: 0;
+    margin: 0;
+    box-shadow: 4px 0 24px 0 rgba(60,72,88,0.08);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+.document-file-list .doc-file-item {
+    display: flex;
+    align-items: center;
+    padding: 22px 28px;
+    cursor: pointer;
+    border-bottom: 1.5px solid #f1f5f9;
+    font-size: 1rem;
+    color: #3730a3;
+    background: linear-gradient(90deg,rgba(236,233,254,0.7) 0%,rgba(255,255,255,0.5) 100%);
+    transition: background 0.22s, color 0.22s, box-shadow 0.22s, filter 0.22s;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    border-radius: 0 18px 18px 0;
+    margin: 0 0 2px 0;
+    box-shadow: 0 2px 12px 0 rgba(99,102,241,0.04);
+    overflow: hidden;
+    animation: coolSlideIn 0.7s cubic-bezier(.4,2,.6,1);
+}
+@keyframes coolSlideIn {
+    from { opacity: 0; transform: translateX(-40px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+.doc-file-item.cool-animate::before {
+    content: '';
+    position: absolute;
+    left: -40px; top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(180deg,#6366f1 0%,#a5b4fc 100%);
+    border-radius: 0 8px 8px 0;
+    opacity: 0;
+    transition: opacity 0.22s;
+    z-index: 0;
+}
+.doc-file-item.active.cool-animate::before {
+    opacity: 1;
+    animation: fireGlow 1.2s infinite alternate;
+}
+@keyframes fireGlow {
+    0% { box-shadow: 0 0 8px 2px #6366f1; }
+    100% { box-shadow: 0 0 24px 8px #a5b4fc; }
+}
+.doc-file-item.active, .doc-file-item:hover {
+    background: linear-gradient(90deg,#6366f1 0%,#a5b4fc 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px 0 #6366f133;
+    z-index: 2;
+}
+.doc-file-item.disabled {
+    filter: grayscale(0.7) blur(1.5px) brightness(1.1);
+    opacity: 0.5;
+    pointer-events: none;
+    background: #e0e7ef;
+    color: #a1a1aa;
+    z-index: 0;
+}
+.document-file-list .doc-file-icon {
+    margin-right: 18px;
+    font-size: 1.6em;
+    color: #6366f1;
+    filter: drop-shadow(0 2px 6px #a5b4fc88);
+    transition: color 0.22s, filter 0.22s;
+}
+.doc-file-item.active .doc-file-icon, .doc-file-item:hover .doc-file-icon {
+    color: #fff;
+    filter: drop-shadow(0 2px 12px #6366f1cc);
+}
+.document-file-list .doc-file-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.document-file-list .doc-file-name {
+    font-weight: 700;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.01em;
+}
+.document-file-list .doc-file-date {
+    font-size: 0.98em;
+    color: #6366f1;
+    opacity: 0.7;
+    font-weight: 400;
+}
+.document-preview {
+    flex: 1;
+    background: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: auto;
+    border-radius: 0 22px 22px 0;
+    box-shadow: 0 2px 24px 0 #6366f122;
+    backdrop-filter: blur(10px) saturate(1.2);
+    z-index: 1;
+    animation: coolFadeIn 1.2s cubic-bezier(.4,2,.6,1) 1;
+}
+@keyframes coolFadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+.document-preview .document-placeholder {
+    color: #6366f1;
+    font-size: 1.25em;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    opacity: 0.85;
+    padding: 32px 0;
+    border-radius: 18px;
+    background: rgba(236,233,254,0.7);
+    box-shadow: 0 2px 24px 0 #6366f122;
+    animation: firePulse 1.5s infinite alternate;
+}
+@keyframes firePulse {
+    0% { box-shadow: 0 0 12px 0 #6366f1; }
+    100% { box-shadow: 0 0 32px 8px #a5b4fc; }
+}
+.document-preview .fire-animate {
+    animation: firePulse 1.5s infinite alternate;
+}
+.cool-iframe {
+    width: 100%;
+    height: 65vh;
+    border: none;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 4px 32px 0 #6366f144;
+    transition: box-shadow 0.3s;
+    animation: coolFadeIn 1.2s cubic-bezier(.4,2,.6,1) 1;
+}
+.cool-pre {
+    background: linear-gradient(135deg,#f8fafc 60%,#a5b4fc 100%);
+    color: #1e293b;
+    padding: 32px;
+    border-radius: 18px;
+    font-size: 1.12em;
+    max-width: 100%;
+    max-height: 65vh;
+    overflow: auto;
+    box-shadow: 0 4px 32px 0 #6366f144;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    animation: coolFadeIn 1.2s cubic-bezier(.4,2,.6,1) 1;
+}
+.document-preview .download-link {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 28px;
+    background: linear-gradient(90deg,#6366f1 0%,#a5b4fc 100%);
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.08em;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 12px 0 #6366f1cc;
+    transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    animation: coolFadeIn 1.2s cubic-bezier(.4,2,.6,1) 1;
+}
+.document-preview .download-link:hover {
+    background: linear-gradient(90deg,#3730a3 0%,#6366f1 100%);
+    box-shadow: 0 4px 24px 0 #6366f1cc;
+    transform: scale(1.04);
+}
+</style>

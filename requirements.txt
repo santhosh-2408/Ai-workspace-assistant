@@ -1,0 +1,30 @@
+# Web framework
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Config / env
+python-dotenv
+
+# Auth
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
+
+# LLM (Google Gemini)
+google-generativeai
+
+# LangChain + vector store + embeddings
+langchain
+langchain-community
+chromadb
+sentence-transformers
+
+# Document loaders
+pypdf
+python-docx
+openpyxl
+unstructured
+
+# Data handling
+pandas

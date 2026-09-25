@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workspace Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-card">
+            <div class="logo-container">
+                <img src="./assets/Ai logo svg 1.svg" alt="AI Logo"
+                style="width: 100px; height: 150px;">
+            </div>
+            <h1>AI Workspace Assistant</h1>
+        </div>
+        
+        <div class="login-card">
+            <h2 class="login-title">Login Page</h2>
+            <p class="login-subtitle">Login to access your AI assistant</p>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                
+                <div id="login-error" class="error-message"></div>
+                
+                <button id="login-btn" class="primary-btn">Login</button>
+                
+                <p class="signup-link">Don't have an account? <a href="#" id="register-link">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Account</h2>
+            
+            <div class="form-group">
+                <label for="reg-name">Name</label>
+                <input type="text" id="reg-name" placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="reg-username">Username</label>
+                <input type="text" id="reg-username" placeholder="Choose a username">
+            </div>
+            
+            <div class="form-group">
+                <label for="reg-email">Email</label>
+                <input type="email" id="reg-email" placeholder="Enter your email">
+            </div>
+            
+            <div class="form-group">
+                <label for="reg-password">Password</label>
+                <input type="password" id="reg-password" placeholder="Create a password">
+            </div>
+            
+            <div id="register-error" class="error-message"></div>
+            
+            <button id="register-btn" class="primary-btn">Register</button>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
