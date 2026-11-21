@@ -941,3 +941,218 @@ body.modal-open .document-preview-modal {
         padding: 0.7rem 0;
     }
 }
+
+
+/* Login page - restore light theme */
+.login-card {
+    background: #ffffff;
+    color: #111827;
+}
+
+.login-card .form-group label {
+    background: transparent !important;
+    color: #111827 !important;
+}
+
+.login-card .form-group input {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+}
+
+.login-card .form-group input::placeholder {
+    color: #6b7280 !important;
+}
+
+.login-card .form-group input:focus {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-color: #4361ee !important;
+    outline: none;
+}
+
+/* ================================
+   LOGIN PAGE - DARK THEME
+   ================================ */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Main login page */
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 60px;
+    padding: 40px 8%;
+    box-sizing: border-box;
+    background: #0f172a;
+}
+
+/* Left side - logo */
+.logo-card {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logo-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.logo-card h1,
+.logo-card h2,
+.logo-card p {
+    color: #f8fafc;
+}
+
+/* Smart AI Workspace text */
+.logo-card {
+    color: #f8fafc;
+    font-size: 18px;
+}
+
+/* Login card */
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    box-sizing: border-box;
+    padding: 35px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Login heading */
+.login-title {
+    color: #f8fafc;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* Subtitle */
+.login-subtitle {
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* Form */
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #f8fafc;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+/* Input boxes */
+.form-group input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+}
+
+.form-group input::placeholder {
+    color: #64748b;
+}
+
+.form-group input:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* Login button */
+.login-form button,
+.login-card button {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: 6px;
+    background: #4361ee;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.login-form button:hover,
+.login-card button:hover {
+    background: #3651d4;
+}
+
+/* Sign-up text */
+.login-card a {
+    color: #60a5fa;
+}
+
+.login-card a:hover {
+    color: #93c5fd;
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 900px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 40px 25px;
+    }
+
+    .logo-card {
+        order: 1;
+    }
+
+    .login-card {
+        order: 2;
+        max-width: 450px;
+    }
+
+    .logo-card img {
+        width: 140px;
+        height: 140px;
+    }
+}
